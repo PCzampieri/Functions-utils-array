@@ -89,3 +89,55 @@ redeArray.forEach((rede) => {
 })
 const radiosUniqueFiltered = Array(...radiosUnique.values())
 console.log(radiosUniqueFiltered)
+
+//-------------------------------------------
+/**
+ * Separa os radio com respectivos macs
+ */
+
+const arrBase = [
+  { radio: 'RD 1', mac: '1111111' },
+  { radio: 'RD 1', mac: '1111112' },
+  { radio: 'RD 2', mac: '1222222' },
+  { radio: 'RD 2', mac: '1222223' },
+  { radio: 'RD 3', mac: '1333333' },
+  { radio: 'RD 3', mac: '1333334' },
+  { radio: 'RD 3', mac: '1333344' },
+  { radio: 'RD 4', mac: '4444444' }
+]
+
+const radioValue = new Set()
+for (const item of arrBase) {
+  radioValue.add(item.radio)
+}
+const arrayRadio = [...radioValue.values()]
+const result = []
+//const macs = []
+
+for (const item1 of arrayRadio) {
+  const macs = []
+  for (const itemBase of arrBase) {
+    if (itemBase.radio === item1) {
+      macs.push(itemBase.mac)
+    }
+  }
+  result.push({
+    radio: item1,
+    macs
+  })
+}
+
+console.log('-------------------------')
+console.log(result)
+console.log('-------------------------')
+
+/**
+ * -------------------------
+[
+  { radio: 'RD 1', macs: [ '1111111', '1111112' ] },
+  { radio: 'RD 2', macs: [ '1222222', '1222223' ] },
+  { radio: 'RD 3', macs: [ '1333333', '1333334', '1333344' ] },
+  { radio: 'RD 4', macs: [ '4444444' ] }
+]
+-------------------------
+ */
